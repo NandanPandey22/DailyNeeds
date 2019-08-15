@@ -75,7 +75,7 @@ public class SignUpFragment extends Fragment {
         password=view.findViewById(R.id.sign_up_password);
         confirmPassword=view.findViewById(R.id.sign_up_confirm_password);
 
-        closeBtn=view.findViewById(R.id.sign_in_close_btn);
+        closeBtn=view.findViewById(R.id.sign_up_close_btn);
         signupBtn=view.findViewById(R.id.sign_up_btn);
         progressBar=view.findViewById(R.id.progressBar2);
         firebaseauth=FirebaseAuth.getInstance();
@@ -92,6 +92,15 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setFragment(new SignInFragment());
+            }
+        });
+
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v)
+            {
+                mainIntent();
             }
         });
 
@@ -247,9 +256,7 @@ public class SignUpFragment extends Fragment {
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
                                         if(task.isSuccessful())
                                         {
-                                            Intent mainIntent=new Intent(getActivity(),MainActivity2.class);
-                                            startActivity(mainIntent);
-                                            getActivity().finish();
+                                            mainIntent();
                                         }
                                         else
                                         {
@@ -287,5 +294,11 @@ public class SignUpFragment extends Fragment {
         }
     }
 
+    void mainIntent()
+    {
+        Intent mainIntent=new Intent(getActivity(),MainActivity2.class);
+        startActivity(mainIntent);
+        getActivity().finish();
+    }
 
 }
